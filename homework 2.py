@@ -5,20 +5,6 @@ Created on Wed Feb 20 18:06:23 2019
 
 @author: heroname
 """
-
-
-
-"""
-part 2 #3
-"""
-
-
-
-
-
-
-
-
 # define variables
 student_list = list() # list for student objects
 count = 0 # loop counter
@@ -74,7 +60,7 @@ class Student:
 # ---------- end class (Student)  ----------
 
 # ---------- functions ----------
-def input_string(data):
+def input_string(data): # create student objects with split data and add student objects to a list
     # define variables
     student = Student()
     
@@ -107,23 +93,23 @@ def input_string(data):
     student_list.append(student)
 # ----- end input_string(data) -----
 
-def output(filename):
+def output(index): # format string
+    return '{:^12s}{:15s}{:10s}{:^9s}{:>5s}'.format(student_list[index].cwid, student_list[index].first_name, student_list[index].last_name, student_list[index].class_id, student_list[index].grade)
+# ----- end output(index) -----
+
+def write_file(filename): # write to file
     count = 0 # reset count
     
-    # write output file, reset file if necessary
-    f = open(filename, mode='w')
+    f = open(filename, mode='w') # write output file, reset file if necessary
+    f = open(filename, mode='a') # append to output file
+    
     # add table heading
-    f = open(filename, mode='a')
     f.writelines('{:^12s}{:15s}{:10s}{:^9s}{:>5s}'.format("CWID", "First Name", "Last Name", "Class ID", "Grade"))
     f.writelines("\n")
-    f.close()
-    
-    # append to output file
-    f = open(filename, mode='a')
     
     # add data to table
     while count < len(student_list):
-        f.writelines('{:^12s}{:15s}{:10s}{:^9s}{:>5s}'.format(student_list[count].cwid, student_list[count].first_name, student_list[count].last_name, student_list[count].class_id, student_list[count].grade))
+        f.writelines(output(count))
         
         # create new line
         if count != len(student_list)-1:
@@ -133,9 +119,7 @@ def output(filename):
         count += 1
     # ---------- end while loop (count < len(student_list)) ----------
     f.close()
-# ----- end output() -----
-    
-    
+# ----- end write_file() -----
 # ---------- end functions ----------
 
 # title and info
@@ -145,6 +129,7 @@ print(title)
 print("This program creates a file that contains a table for inputted student academic records.")
 print("Please enter the data of the students using 'CWID:__, FirstName:__, LastName:__, Gender:__, BirthDate:__, ClassID:__, ClassDate:__, Grade:__'\n")
 
+file = input("Please enter the name of the file: ")
 students = int(input("Please enter the number of students : "))
     
 # student data input
@@ -158,5 +143,4 @@ while count < students:
     count += 1
 # ---------- end while loop (count < students) ----------
 
-# add data to output file
-output()
+write_file(file)

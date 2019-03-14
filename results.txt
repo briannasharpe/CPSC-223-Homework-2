@@ -1,3 +1,10 @@
-CWID        First Name     Last Name Class ID Grade
-920506      Baekhyun       Byun      12345    C    
-921127      Chanyeol       Park      12346    C    
+    CWID    First Name     Last Name Class ID Grade
+   920506   Baekhyun       Byun        12345      C
+   921127   Chanyeol       Park        12346      C
+   920918   Amber          Liu         12345      A
+   870202   Victoria       Song        12346      A
+   930112   Kyungsoo       Do          12348      A
+   940412   Sehun          Oh          12348      B
+   940114   Jongin         Kim         12347      B
+   941024   Krystal        Jung        12347      B
+   921127   Jongdae        Kim         12347      A
