@@ -7,9 +7,12 @@ Created on Wed Feb 20 18:06:23 2019
 """
 
 
+
 """
-add students to output file
+part 2 #3
 """
+
+
 
 
 
@@ -17,20 +20,10 @@ add students to output file
 
 
 # define variables
-student_list = list() # list for student dictionary objects
+student_list = list() # list for student objects
 count = 0 # loop counter
 
 class Student:
-    '''   def __init__(self, cwid, first_name, last_name, gender, birth_date, class_id, class_date, grade):
-        self._cwid = cwid
-        self._first_name = first_name
-        self._last_name = last_name
-        self._gender = gender
-        self._birth_date = birth_date
-        self._class_id = class_id
-        self._class_date = class_date
-        self._grade = grade
-    '''
     def get_cwid(self):
         return self._cwid
     def set_cwid(self, cwid):
@@ -112,23 +105,37 @@ def input_string(data):
             
     # add current student to the list of all students
     student_list.append(student)
+# ----- end input_string(data) -----
 
-def output():
-    count = 0
+def output(filename):
+    count = 0 # reset count
     
-    # output file code
-    f = open('results.txt', mode='a')
+    # write output file, reset file if necessary
+    f = open(filename, mode='w')
+    # add table heading
+    f = open(filename, mode='a')
+    f.writelines('{:^12s}{:15s}{:10s}{:^9s}{:>5s}'.format("CWID", "First Name", "Last Name", "Class ID", "Grade"))
+    f.writelines("\n")
+    f.close()
     
+    # append to output file
+    f = open(filename, mode='a')
+    
+    # add data to table
     while count < len(student_list):
-        # add data to table
-        f.writelines('{:12s}{:15s}{:10s}{:9s}{:5s}'.format(student_list[count].cwid, student_list[count].first_name, student_list[count].last_name, student_list[count].class_id, student_list[count].grade))
+        f.writelines('{:^12s}{:15s}{:10s}{:^9s}{:>5s}'.format(student_list[count].cwid, student_list[count].first_name, student_list[count].last_name, student_list[count].class_id, student_list[count].grade))
+        
         # create new line
         if count != len(student_list)-1:
             f.writelines("\n")
+        
         # update loop count
         count += 1
     # ---------- end while loop (count < len(student_list)) ----------
     f.close()
+# ----- end output() -----
+    
+    
 # ---------- end functions ----------
 
 # title and info
@@ -139,26 +146,17 @@ print("This program creates a file that contains a table for inputted student ac
 print("Please enter the data of the students using 'CWID:__, FirstName:__, LastName:__, Gender:__, BirthDate:__, ClassID:__, ClassDate:__, Grade:__'\n")
 
 students = int(input("Please enter the number of students : "))
-
-# write output file, reset file if necessary
-f = open('results.txt', mode='w')
-# add table heading
-f = open('results.txt', mode='a')
-f.writelines('{:12s}{:15s}{:10s}{:9s}{:5s}'.format("CWID", "First Name", "Last Name", "Class ID", "Grade"))
-f.writelines("\n")
-f.close()
     
 # student data input
 while count < students:
     # track current student count
     print("Student ", count + 1, "/", students)
-    student_string = input("Enter data : ")
-    input_string(student_string)
+    data_string = input("Enter data : ")
+    input_string(data_string)
     
     # update loop count
     count += 1
 # ---------- end while loop (count < students) ----------
-    
-print(student_list)
-    
+
+# add data to output file
 output()
